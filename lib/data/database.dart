@@ -17,24 +17,35 @@ class ListDatabase {
     update();
   }
 
-  void addItem( String item ){
-    itemsList.add([item,false]);
-  }
-
   void loadData() {
     itemsList = _box.get("ITEMSLIST");
-  
   }
 
-  void update() {
-    _box.put("ITEMSLIST",itemsList);
+  void addItem( String item ){
+    itemsList.add([item,false]);
+    update();
+  }
+
+  void removeItem( int index ) {
+    itemsList.removeAt(index);
+    update();
+  }
+
+  void flipBool( int index ) {
+    itemsList[index][1] = !itemsList[index][1];
+    update();
   }
 
   void removeChecked() {
     itemsList.removeWhere((element) => _checked(element));
+    update();
   }
 
   bool _checked( List element ) {
     return element[1];
+  }
+
+  void update() {
+    _box.put("ITEMSLIST",itemsList);
   }
 }

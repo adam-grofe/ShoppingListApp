@@ -46,19 +46,17 @@ class _MyHomePageState extends State<MyHomePage> {
   // Method to change box
   void checkBoxChanged(bool? value, int index) {
     setState((){
-      db.itemsList[index][1] = !db.itemsList[index][1];
+      db.flipBool(index);
     });
-    db.update();
   }
 
   // Save the New Item to the list
   void saveNewItem() {
     setState(() {
-      db.itemsList.add([_controller.text,false]);
+      db.addItem(_controller.text);
       _controller.clear();
     });
     Navigator.of(context).pop();
-    db.update();
   }
 
   //Create New Item
@@ -78,16 +76,14 @@ class _MyHomePageState extends State<MyHomePage> {
   // Delete Item
   void deleteItem(int index) {
     setState(() {
-      db.itemsList.removeAt(index);
+      db.removeItem(index);
     });
-     db.update();
   }
 
   void deleteChecked(){
     setState(() {
       db.removeChecked();
     });
-    db.update();
   }
 
 

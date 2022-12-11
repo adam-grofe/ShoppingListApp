@@ -3,6 +3,7 @@ import 'package:grocery_list/data/database.dart';
 import 'package:grocery_list/utils/add-item-dialogue.dart';
 import 'package:grocery_list/utils/list-tile.dart';
 import 'package:grocery_list/utils/add-item-dialogue.dart';
+import 'package:grocery_list/utils/button.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -82,6 +83,13 @@ class _MyHomePageState extends State<MyHomePage> {
      db.update();
   }
 
+  void deleteAll(){
+    setState(() {
+      db.itemsList.clear();
+    });
+    db.update();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,6 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
@@ -109,12 +118,24 @@ class _MyHomePageState extends State<MyHomePage> {
             );
           }
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: createNewItem,
-          tooltip: 'Add List Item',
-          child: const Icon(Icons.add),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
-      backgroundColor: Colors.blueGrey,
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,   
+        children: [
+          FloatingActionButton(
+            onPressed: deleteAll,
+            tooltip: 'Delete All Items',
+            child: const Icon(Icons.delete),
+          ), // This trailing comma makes auto-formatting nicer for build methods.
+          SizedBox(
+            height: 24,
+          ),
+          FloatingActionButton(
+            onPressed: createNewItem,
+            tooltip: 'Add List Item',
+            child: const Icon(Icons.add),
+          ), // This trailing comma makes auto-formatting nicer for build methods.
+        ],
+      ),
     );
   }
 }

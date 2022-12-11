@@ -83,9 +83,9 @@ class _MyHomePageState extends State<MyHomePage> {
      db.update();
   }
 
-  void deleteAll(){
+  void deleteChecked(){
     setState(() {
-      db.itemsList.clear();
+      db.removeChecked();
     });
     db.update();
   }
@@ -122,8 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.end,   
         children: [
           FloatingActionButton(
-            onPressed: deleteAll,
-            tooltip: 'Delete All Items',
+            onPressed: deleteChecked,
+            tooltip: 'Delete All Checked Items',
             child: const Icon(Icons.delete),
           ), // This trailing comma makes auto-formatting nicer for build methods.
           const SizedBox(

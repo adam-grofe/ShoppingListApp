@@ -29,4 +29,12 @@ class ListDatabase {
   void update() {
     _box.put("ITEMSLIST",itemsList);
   }
+
+  void removeChecked() {
+    itemsList.removeWhere((element) => _checked(element));
+  }
+
+  bool _checked( List element ) {
+    return element[1];
+  }
 }

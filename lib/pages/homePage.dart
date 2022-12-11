@@ -126,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
             tooltip: 'Delete All Items',
             child: const Icon(Icons.delete),
           ), // This trailing comma makes auto-formatting nicer for build methods.
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
           FloatingActionButton(

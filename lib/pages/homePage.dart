@@ -114,11 +114,6 @@ class _MyHomePageState extends State<MyHomePage> {
           tooltip: 'Add List Item',
           child: const Icon(Icons.add),
         ), // This trailing comma makes auto-formatting nicer for build methods.
-        floatingActionButton: FloatingActionButton(
-          onPressed: createNewItem,
-          tooltip: 'Remove everything from list',
-          child: const Icon(Icons.delete),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
       backgroundColor: Colors.blueGrey,
     );
   }
